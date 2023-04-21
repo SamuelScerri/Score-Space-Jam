@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://b38v3dryhbbjo"]
+
+[ext_resource type="Texture2D" uid="uid://deh46ylnqx6qi" path="res://icon.svg" id="1_kp4ft"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gcbb"]
+size = Vector2(128, 128)
+
+[node name="Building" type="StaticBody2D" groups=["Building"]]
+position = Vector2(512, 384)
+metadata/_edit_group_ = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_kp4ft")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Sprite"]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = -64.0
+text = "Building"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8gcbb")
