@@ -1,9 +1,17 @@
 extends Node
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+func _process(delta):
+	$Crosshair.global_position = get_viewport().get_mouse_position()
+
 func start_game():
 	$Animator.play("Begin")
 	$Select.play()
 	$Music.play()
+	$Music/Crowd.play()
+	
 
 	Global.current_game_area.start_game()
 

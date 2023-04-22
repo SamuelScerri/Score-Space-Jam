@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c4fmn6h3lpp4s" path="res://Nodes/Character.tscn" id="2_7xs16"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c67k"]
-size = Vector2(128, 128)
+size = Vector2(64, 128)
 
 [sub_resource type="Animation" id="Animation_37fw0"]
 resource_name = "Death"

@@ -25,6 +25,8 @@ func _ready():
 	change_destination()
 
 func _process(delta):
+	move_and_slide()
+	
 	if in_view and not Global.current_game_area.game_ended:
 		if Input.is_action_just_pressed("Fire"):
 			die()
@@ -62,7 +64,7 @@ func _physics_process(_delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, 8)
 	
-	move_and_slide()
+	
 
 #Here We Pick A Random Destination That Is Close To The Building
 func change_destination():

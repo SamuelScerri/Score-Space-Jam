@@ -1,14 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://dct41s4dgk0i4"]
+[gd_scene load_steps=20 format=3 uid="uid://dct41s4dgk0i4"]
 
 [ext_resource type="Script" path="res://Scripts/User Interface.gd" id="1_hxl12"]
 [ext_resource type="FontFile" uid="uid://bsbn6wphuu3nh" path="res://Resources/Font.ttf" id="2_8s0u5"]
-[ext_resource type="Texture2D" uid="uid://deh46ylnqx6qi" path="res://icon.svg" id="2_qjuej"]
+[ext_resource type="Texture2D" uid="uid://52w2jh8j4exa" path="res://Resources/Polaroid.png" id="3_2mpsh"]
 [ext_resource type="AudioStream" uid="uid://by4q71mfeau6c" path="res://Resources/Sound Effects/Whoosh.wav" id="3_b6kgu"]
 [ext_resource type="PackedScene" uid="uid://c4fmn6h3lpp4s" path="res://Nodes/Character.tscn" id="4_2jqh3"]
 [ext_resource type="AudioStream" uid="uid://236dfbhpjqem" path="res://Resources/Sound Effects/Select.wav" id="4_fj4vb"]
 [ext_resource type="AudioStream" uid="uid://ctrvqr6o00mrh" path="res://Resources/Sound Effects/Good Target.wav" id="6_jdj2w"]
 [ext_resource type="AudioStream" uid="uid://dlj3m5lvgkvj8" path="res://Resources/Sound Effects/Wrong.wav" id="7_2jpv7"]
 [ext_resource type="AudioStream" uid="uid://dtuhnr87k4f8k" path="res://Resources/Background.mp3" id="8_g5jcq"]
+[ext_resource type="AudioStream" uid="uid://bhxila22t1jr" path="res://Resources/Crowd.wav" id="9_ne2dl"]
+[ext_resource type="Texture2D" uid="uid://d3s66jmjsfed6" path="res://Resources/Crosshair.png" id="10_tbl11"]
 
 [sub_resource type="FontVariation" id="FontVariation_ntvwg"]
 base_font = ExtResource("2_8s0u5")
@@ -37,7 +39,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(1.5, 1.5)]
+"values": [Vector2(6, 6), Vector2(4, 4)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -85,7 +87,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0.501961)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961)]
 }
 tracks/6/type = "method"
 tracks/6/imported = false
@@ -307,29 +309,31 @@ vertical_alignment = 1
 offset_right = 1024.0
 offset_bottom = 768.0
 mouse_filter = 1
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 1)
 
 [node name="Modulate" type="CanvasModulate" parent="."]
 modulate = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Target" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
 z_index = 4096
-position = Vector2(512, 384)
-scale = Vector2(2, 2)
-texture = ExtResource("2_qjuej")
-metadata/_edit_group_ = true
+texture_filter = 1
+position = Vector2(512, 896)
+scale = Vector2(6, 6)
+texture = ExtResource("3_2mpsh")
 
 [node name="Button" type="Button" parent="Target"]
-offset_left = -32.0
-offset_top = 96.0
-offset_right = 32.0
-offset_bottom = 128.0
+offset_left = -21.0
+offset_top = 27.0
+offset_right = 21.0
+offset_bottom = 53.0
 theme_override_font_sizes/font_size = 8
-disabled = true
 text = "Confirm"
 
 [node name="Character" parent="Target" instance=ExtResource("4_2jqh3")]
+position = Vector2(0, -4)
+scale = Vector2(1.5, 1.5)
+target = true
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 autoplay = "Show"
@@ -357,5 +361,16 @@ pitch_scale = 3.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_g5jcq")
+
+[node name="Crowd" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("9_ne2dl")
+volume_db = -32.0
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+z_index = 4096
+texture_filter = 1
+position = Vector2(512, 384)
+scale = Vector2(4, 4)
+texture = ExtResource("10_tbl11")
 
 [connection signal="pressed" from="Target/Button" to="." method="start_game"]

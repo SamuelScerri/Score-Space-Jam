@@ -14,13 +14,17 @@ var buildings
 
 var dead: bool = false
 var in_view: bool = false
+var old_position
 
 func _ready():
 	buildings = get_tree().get_nodes_in_group("Building")
+	old_position = global_position
+	
 	destination = global_position
 	change_destination()
 
 func _process(delta):
+	move_and_slide()
 	if in_view:
 		if Input.is_action_just_pressed("Fire") and not Global.current_game_area.game_ended:
 			die()
@@ -43,7 +47,7 @@ func _physics_process(_delta):
 			direction.y = -1
 		
 		if direction != Vector2.ZERO:
-			destination = global_position + direction.normalized()
+			destination = global_position + direction.normalized() * difference_between_move * 2
 		
 		#Here The Citizen Will Avoid Buildings
 		for building in buildings:
@@ -57,7 +61,8 @@ func _physics_process(_delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, 8)
 	
-	move_and_slide()
+	
+	old_position = global_position
 
 #Here We Pick A Random Destination That Is Close To The Building
 func change_destination():
