@@ -13,11 +13,17 @@ var destination
 var buildings
 
 var dead: bool = false
+var in_view: bool = false
 
 func _ready():
 	buildings = get_tree().get_nodes_in_group("Building")
 	destination = global_position
 	change_destination()
+
+func _process(delta):
+	if in_view:
+		if Input.is_action_just_pressed("Fire"):
+			die()
 
 func _physics_process(_delta):
 	if not dead:
@@ -65,6 +71,18 @@ func change_destination():
 		
 
 func die():
-	dead = true
-	$Feedback.play("Death")
-	velocity = Vector2(0, -320)
+	if not dead:
+		#Replace This Citizen
+		Global.current_game_area.spawn_citizen()
+		
+		dead = true
+		$Feedback.play("Death")
+		velocity = Vector2(0, -320)
+
+
+func _on_mouse_entered():
+	in_view = true
+
+
+func _on_mouse_exited():
+	in_view = false

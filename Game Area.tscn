@@ -3,22 +3,24 @@
 [ext_resource type="PackedScene" uid="uid://b38v3dryhbbjo" path="res://Nodes/Building.tscn" id="1_r261b"]
 [ext_resource type="Script" path="res://Game Area.gd" id="1_sroek"]
 [ext_resource type="PackedScene" uid="uid://cm2ftyt7r5ag0" path="res://Nodes/Enemy.tscn" id="2_216sn"]
-[ext_resource type="PackedScene" uid="uid://dct41s4dgk0i4" path="res://Interface.tscn" id="2_tfo6k"]
 [ext_resource type="PackedScene" uid="uid://ids3m7jc5tp5" path="res://Nodes/Citizen.tscn" id="4_3nsmv"]
+[ext_resource type="AudioStream" uid="uid://c60n6mtf4lpvp" path="res://Resources/Sound Effects/Fire.mp3" id="5_mhmy3"]
 
-[node name="Game Area" type="Node"]
+[node name="Game Area" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_sroek")
 citizen_node = ExtResource("4_3nsmv")
 enemy_node = ExtResource("2_216sn")
 
-[node name="Interface" parent="." instance=ExtResource("2_tfo6k")]
-visible = false
-
 [node name="Building" parent="." instance=ExtResource("1_r261b")]
 
 [node name="Spawn Delay" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 autostart = true
+
+[node name="Fire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mhmy3")
+volume_db = -16.0
+max_polyphony = 32
 
 [connection signal="timeout" from="Spawn Delay" to="." method="_on_spawn_delay_timeout"]

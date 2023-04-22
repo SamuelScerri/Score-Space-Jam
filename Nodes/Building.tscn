@@ -57,6 +57,7 @@ _data = {
 
 [node name="Building" type="StaticBody2D" groups=["Building"]]
 position = Vector2(512, 384)
+input_pickable = true
 script = ExtResource("1_pgcdw")
 metadata/_edit_group_ = true
 

@@ -1,23 +1,99 @@
-[gd_scene load_steps=4 format=3 uid="uid://ids3m7jc5tp5"]
+[gd_scene load_steps=7 format=3 uid="uid://ids3m7jc5tp5"]
 
 [ext_resource type="Texture2D" uid="uid://deh46ylnqx6qi" path="res://icon.svg" id="1_8i5ln"]
 [ext_resource type="Script" path="res://Scripts/Citizen.gd" id="1_slcp4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iol2f"]
-size = Vector2(64, 64)
+size = Vector2(128, 128)
+
+[sub_resource type="Animation" id="Animation_37fw0"]
+resource_name = "Death"
+length = 4.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3, 4),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mv8b5"]
+resource_name = "Spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4p4n"]
+_data = {
+"Death": SubResource("Animation_37fw0"),
+"Spawn": SubResource("Animation_mv8b5")
+}
 
 [node name="Citizen" type="CharacterBody2D" groups=["Citizen"]]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0, 1, 1, 1)
 z_index = -4095
 position = Vector2(512, 384)
+scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 0
+input_pickable = true
 script = ExtResource("1_slcp4")
 metadata/_edit_group_ = true
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 0, 1)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_8i5ln")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_iol2f")
+
+[node name="Feedback" type="AnimationPlayer" parent="."]
+autoplay = "Spawn"
+libraries = {
+"": SubResource("AnimationLibrary_b4p4n")
+}
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
