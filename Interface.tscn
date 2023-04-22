@@ -1,0 +1,191 @@
+[gd_scene load_steps=7 format=3 uid="uid://dct41s4dgk0i4"]
+
+[ext_resource type="Script" path="res://Scripts/User Interface.gd" id="1_hxl12"]
+[ext_resource type="Texture2D" uid="uid://deh46ylnqx6qi" path="res://icon.svg" id="2_qjuej"]
+
+[sub_resource type="Animation" id="Animation_ribx5"]
+resource_name = "Begin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Target:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(512, 384), Vector2(864, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Target:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1.5, 1.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Target/Button:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Target/Button:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Background:color")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Target:self_modulate")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0.501961)]
+}
+
+[sub_resource type="Animation" id="Animation_oqim6"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_gr5k4"]
+resource_name = "Show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Target:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(512, 896), Vector2(512, 384)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Target/Button:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Modulate:color")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background:color")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_avmb6"]
+_data = {
+"Begin": SubResource("Animation_ribx5"),
+"Idle": SubResource("Animation_oqim6"),
+"Show": SubResource("Animation_gr5k4")
+}
+
+[node name="Interface" type="Node2D"]
+process_mode = 3
+z_index = 4096
+script = ExtResource("1_hxl12")
+metadata/_edit_group_ = true
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1024.0
+offset_bottom = 768.0
+color = Color(0, 0, 0, 1)
+
+[node name="Modulate" type="CanvasModulate" parent="."]
+modulate = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="Target" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+z_index = 4096
+position = Vector2(512, 896)
+scale = Vector2(2, 2)
+texture = ExtResource("2_qjuej")
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="Target"]
+offset_left = -32.0
+offset_top = 96.0
+offset_right = 32.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 8
+text = "Confirm"
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+autoplay = "Show"
+libraries = {
+"": SubResource("AnimationLibrary_avmb6")
+}
+
+[connection signal="pressed" from="Target/Button" to="." method="start_game"]

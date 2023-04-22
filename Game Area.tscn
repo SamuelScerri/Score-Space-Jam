@@ -1,13 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcarqfq1aej1t"]
+[gd_scene load_steps=6 format=3 uid="uid://bcarqfq1aej1t"]
 
 [ext_resource type="PackedScene" uid="uid://b38v3dryhbbjo" path="res://Nodes/Building.tscn" id="1_r261b"]
+[ext_resource type="Script" path="res://Game Area.gd" id="1_sroek"]
 [ext_resource type="PackedScene" uid="uid://cm2ftyt7r5ag0" path="res://Nodes/Enemy.tscn" id="2_216sn"]
+[ext_resource type="PackedScene" uid="uid://dct41s4dgk0i4" path="res://Interface.tscn" id="2_tfo6k"]
+[ext_resource type="PackedScene" uid="uid://ids3m7jc5tp5" path="res://Nodes/Citizen.tscn" id="4_3nsmv"]
 
 [node name="Game Area" type="Node"]
+process_mode = 1
+script = ExtResource("1_sroek")
+citizen_node = ExtResource("4_3nsmv")
+enemy_node = ExtResource("2_216sn")
+
+[node name="Interface" parent="." instance=ExtResource("2_tfo6k")]
+visible = false
 
 [node name="Building" parent="." instance=ExtResource("1_r261b")]
 
-[node name="Enemy" parent="." instance=ExtResource("2_216sn")]
+[node name="Spawn Delay" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
 
-[node name="Enemy3" parent="." instance=ExtResource("2_216sn")]
-position = Vector2(896, 128)
+[connection signal="timeout" from="Spawn Delay" to="." method="_on_spawn_delay_timeout"]

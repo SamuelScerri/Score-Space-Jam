@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export_subgroup("Movement")
-@export var movement_speed: int = 64
+@export var movement_speed: int = 96
 @export var difference_between_move: int = 96
 
 @export_subgroup("Randomness")
@@ -11,6 +11,8 @@ extends CharacterBody2D
 
 var building_target
 var destination
+
+var dead: bool = false
 
 func pick_random_building(buildings: Array):
 	return buildings[randi_range(0, buildings.size() - 1)]
@@ -22,29 +24,38 @@ func _ready():
 	change_destination()
 
 func _physics_process(_delta):
-	if global_position.distance_to(destination) < .1:
-		change_destination()
+	if not dead:
+		check_for_collision()
 		
-	var difference = (destination - global_position).normalized()
-	velocity = difference * movement_speed
-	move_and_slide()
+		#If The Enemy Is Close To The Building, They Will Stop Zig-Zagging And Make A Bee-Line For It
+		if global_position.distance_to(building_target.global_position) < stop_straying_distance:
+			destination = building_target.global_position
+		
+		elif global_position.distance_to(destination) < 1:
+			change_destination()
+		
+		var difference = (destination - global_position).normalized()
+		velocity = velocity.move_toward(difference * movement_speed, 4)
+		
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, 8)
 	
-	check_for_collision()
+	move_and_slide()
 
 #Here We Pick A Random Destination That Is Close To The Building
 func change_destination():
 	#Get The Direction Difference
 	var direction = (building_target.global_position - global_position).normalized()
 	
-	#If The Enemy Is Close To The Building, They Will Stop Zig-Zagging And Make A Bee-Line For It
-	if global_position.distance_to(building_target.global_position) < stop_straying_distance:
-		destination = building_target.global_position
-	
-	#Here We Get The Angle Of The Difference, And Randomize It A Bit To Give A Sort Of Zig-Zag Movement
-	else:
-		var angle = direction.angle() + deg_to_rad(randf_range(-stray_angle_min, stray_angle_max))
-		destination = global_position + Vector2(cos(angle), sin(angle)) * difference_between_move
+	var angle = direction.angle() + deg_to_rad(randf_range(-stray_angle_min, stray_angle_max))
+	destination = global_position + Vector2(cos(angle), sin(angle)) * difference_between_move
 
 func check_for_collision():
 	if get_slide_collision_count() != 0:
+		building_target.damage()
 		queue_free()
+
+func die():
+	dead = true
+	$Feedback.play("Death")
+	velocity = Vector2(0, -320)
