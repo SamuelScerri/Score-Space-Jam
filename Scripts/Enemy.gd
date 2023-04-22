@@ -92,3 +92,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	in_view = false
+
+
+func _on_feedback_animation_finished():
+	$Feedback.play("Walk")

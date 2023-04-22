@@ -43,12 +43,12 @@ func _physics_process(_delta):
 			direction.y = -1
 		
 		if direction != Vector2.ZERO:
-			destination = global_position + direction.normalized() * difference_between_move / 2
+			destination = global_position + direction.normalized()
 		
 		#Here The Citizen Will Avoid Buildings
 		for building in buildings:
 			if global_position.distance_to(building.global_position) < stop_straying_distance:
-				destination = global_position + (global_position - building.global_position).normalized() * difference_between_move / 2
+				destination = global_position + (global_position - building.global_position).normalized()
 				break
 		
 		var difference = (destination - global_position).normalized()

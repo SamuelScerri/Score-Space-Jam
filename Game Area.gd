@@ -6,7 +6,7 @@ var score: int = 0
 @onready var camera = $Camera
 @onready var shake_duration = $Shake
 
-@export var max_citizens_in_area = 32
+@export var max_citizens_in_area = 64
 @export var enemy_chance_percentage = .2
 
 @export var citizen_node: PackedScene
@@ -15,9 +15,13 @@ var score: int = 0
 var should_shake = false
 var game_ended = false
 
+var citizen_enemy
+
 func _ready():
 	Global.current_game_area = self
 	get_tree().paused = true
+	
+	citizen_enemy = user_interface.get_citizen()
 	
 	#We Will Now Create A Bunch Of Citizens
 	for i in range(max_citizens_in_area):

@@ -7,6 +7,9 @@ func start_game():
 
 	Global.current_game_area.start_game()
 
+func get_citizen():
+	return $Target/Character
+
 func update_score_label(score, positive: bool):
 	if not positive:
 		$Animator.play("Red Flash")

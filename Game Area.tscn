@@ -16,7 +16,7 @@ enemy_node = ExtResource("2_216sn")
 [node name="Building" parent="." instance=ExtResource("1_r261b")]
 
 [node name="Spawn Delay" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 2.0
 autostart = true
 
 [node name="Fire" type="AudioStreamPlayer" parent="."]
