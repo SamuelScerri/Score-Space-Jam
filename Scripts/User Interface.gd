@@ -3,6 +3,7 @@ extends Node
 func start_game():
 	$Animator.play("Begin")
 	$Select.play()
+	$Music.play()
 
 	Global.current_game_area.start_game()
 
@@ -13,3 +14,6 @@ func update_score_label(score, positive: bool):
 		$Animator.play("Green Flash")
 	
 	$Label.text = str(score)
+
+func show_end():
+	$Animator.play("End")

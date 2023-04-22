@@ -57,10 +57,17 @@ func start_game():
 	get_tree().paused = false
 	print("Starting Game")
 
+func do_shake():
+	should_shake = true
+	shake_duration.start()
+
+func end_game():
+	get_tree().paused = true
+	user_interface.show_end()
+
 func _process(delta):
 	if Input.is_action_just_pressed("Fire"):
-		should_shake = true
-		shake_duration.start()
+		do_shake()
 		
 		$Fire.play()
 	

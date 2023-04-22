@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dct41s4dgk0i4"]
+[gd_scene load_steps=17 format=3 uid="uid://dct41s4dgk0i4"]
 
 [ext_resource type="Script" path="res://Scripts/User Interface.gd" id="1_hxl12"]
 [ext_resource type="FontFile" uid="uid://bsbn6wphuu3nh" path="res://Resources/Font.ttf" id="2_8s0u5"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://236dfbhpjqem" path="res://Resources/Sound Effects/Select.wav" id="4_fj4vb"]
 [ext_resource type="AudioStream" uid="uid://ctrvqr6o00mrh" path="res://Resources/Sound Effects/Good Target.wav" id="6_jdj2w"]
 [ext_resource type="AudioStream" uid="uid://dlj3m5lvgkvj8" path="res://Resources/Sound Effects/Wrong.wav" id="7_2jpv7"]
+[ext_resource type="AudioStream" uid="uid://dtuhnr87k4f8k" path="res://Resources/Background.mp3" id="8_g5jcq"]
 
 [sub_resource type="FontVariation" id="FontVariation_ntvwg"]
 base_font = ExtResource("2_8s0u5")
@@ -168,7 +169,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_wq1n1"]
 resource_name = "Green Flash"
-length = 0.1
+length = 0.2
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -190,7 +191,7 @@ tracks/1/path = NodePath("Background:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 1, 0, 0.12549), Color(0, 1, 0, 0)]
@@ -198,7 +199,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_1e2tb"]
 resource_name = "Red Flash"
-length = 0.1
+length = 0.2
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -220,15 +221,67 @@ tracks/1/path = NodePath("Background:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 0.12549), Color(1, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_1yv4p"]
+resource_name = "End"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.501961)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music:volume_db")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, -32.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Target:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_avmb6"]
 _data = {
 "Begin": SubResource("Animation_ribx5"),
+"End": SubResource("Animation_1yv4p"),
 "Green Flash": SubResource("Animation_wq1n1"),
 "Idle": SubResource("Animation_oqim6"),
 "Red Flash": SubResource("Animation_1e2tb"),
@@ -253,7 +306,7 @@ vertical_alignment = 1
 offset_right = 1024.0
 offset_bottom = 768.0
 mouse_filter = 1
-color = Color(1, 0, 0, 0.12549)
+color = Color(0, 0, 0, 0)
 
 [node name="Modulate" type="CanvasModulate" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -291,11 +344,15 @@ stream = ExtResource("4_fj4vb")
 
 [node name="Good" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_jdj2w")
-volume_db = -16.0
+volume_db = -8.0
 pitch_scale = 2.0
 
 [node name="Bad" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_2jpv7")
+volume_db = 16.0
 pitch_scale = 3.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_g5jcq")
 
 [connection signal="pressed" from="Target/Button" to="." method="start_game"]
