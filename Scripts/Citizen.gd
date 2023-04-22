@@ -74,6 +74,7 @@ func die():
 	if not dead:
 		#Replace This Citizen
 		Global.current_game_area.spawn_citizen()
+		Global.current_game_area.add_score(-20)
 		
 		dead = true
 		$Feedback.play("Death")

@@ -2,7 +2,9 @@ extends Node
 
 var score: int = 0
 
-#@onready var user_interface = $Interface
+@onready var user_interface = $Interface
+@onready var camera = $Camera
+@onready var shake_duration = $Shake
 
 @export var max_citizens_in_area = 32
 @export var enemy_chance_percentage = .2
@@ -10,17 +12,38 @@ var score: int = 0
 @export var citizen_node: PackedScene
 @export var enemy_node: PackedScene
 
+var should_shake = false
+
 func _ready():
 	Global.current_game_area = self
-	#get_tree().paused = true
+	get_tree().paused = true
 	
 	#We Will Now Create A Bunch Of Citizens
 	for i in range(max_citizens_in_area):
 		spawn_citizen()
 
+func add_score(amount):
+	score += amount
+	
+	if score < 0:
+		score = 0
+	
+	if amount > 0:
+		user_interface.update_score_label(score, true)
+	else:
+		user_interface.update_score_label(score, false)
+
+func shake_camera(strength):
+	camera.offset = Vector2(randi_range(-strength, strength), randi_range(-strength, strength))
+
 func spawn_citizen():
 	var citizen = citizen_node.instantiate()
-	citizen.global_position = Vector2(randi_range(0, 1) * (1024 / float(randi_range(1, 2))), randi_range(0, 1) * (768 / float(randi_range(1, 2))))
+	var x_or_y = randi_range(0, 1)
+	
+	if x_or_y == 0:
+		citizen.global_position = Vector2(randi_range(0, 1024), randi_range(0, 1) * 768)
+	else:
+		citizen.global_position = Vector2(randi_range(0, 1) * 1024, randi_range(0, 768))
 	
 	add_child(citizen)
 
@@ -36,7 +59,13 @@ func start_game():
 
 func _process(delta):
 	if Input.is_action_just_pressed("Fire"):
+		should_shake = true
+		shake_duration.start()
+		
 		$Fire.play()
+	
+	if should_shake:
+		shake_camera(4)
 
 func get_furthest_citizen(citizens: Array, building):
 	var furthest_citizen: CharacterBody2D = null
@@ -54,3 +83,8 @@ func _on_spawn_delay_timeout():
 	var enemy = enemy_node.instantiate()
 	enemy.global_position = furthest_citizen.global_position
 	add_child(enemy)
+
+
+func _on_shake_timeout():
+	should_shake = false
+	camera.offset = Vector2.ZERO

@@ -79,6 +79,8 @@ func check_for_collision():
 func die():
 	if not dead:
 		dead = true
+		Global.current_game_area.add_score(10)
+		
 		$Feedback.play("Death")
 		velocity = Vector2(0, -320)
 
