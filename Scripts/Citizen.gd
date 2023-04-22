@@ -22,7 +22,7 @@ func _ready():
 
 func _process(delta):
 	if in_view:
-		if Input.is_action_just_pressed("Fire"):
+		if Input.is_action_just_pressed("Fire") and not Global.current_game_area.game_ended:
 			die()
 
 func _physics_process(_delta):
@@ -87,3 +87,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	in_view = false
+
+
+func _on_feedback_animation_finished():
+	$Feedback.play("Walk")

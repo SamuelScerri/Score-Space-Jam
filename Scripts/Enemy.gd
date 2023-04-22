@@ -25,13 +25,14 @@ func _ready():
 	change_destination()
 
 func _process(delta):
-	if in_view:
+	if in_view and not Global.current_game_area.game_ended:
 		if Input.is_action_just_pressed("Fire"):
 			die()
 
 func _physics_process(_delta):
 	if not dead:
-		check_for_collision()
+		if not Global.current_game_area.game_ended:
+			check_for_collision()
 		
 		#If The Enemy Is Close To The Building, They Will Stop Zig-Zagging And Make A Bee-Line For It
 		if global_position.distance_to(building_target.global_position) < stop_straying_distance:

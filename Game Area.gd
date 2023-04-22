@@ -13,6 +13,7 @@ var score: int = 0
 @export var enemy_node: PackedScene
 
 var should_shake = false
+var game_ended = false
 
 func _ready():
 	Global.current_game_area = self
@@ -62,11 +63,11 @@ func do_shake():
 	shake_duration.start()
 
 func end_game():
-	get_tree().paused = true
 	user_interface.show_end()
+	game_ended = true
 
 func _process(delta):
-	if Input.is_action_just_pressed("Fire"):
+	if Input.is_action_just_pressed("Fire") and not game_ended:
 		do_shake()
 		
 		$Fire.play()

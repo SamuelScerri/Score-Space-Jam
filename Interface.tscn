@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dct41s4dgk0i4"]
+[gd_scene load_steps=18 format=3 uid="uid://dct41s4dgk0i4"]
 
 [ext_resource type="Script" path="res://Scripts/User Interface.gd" id="1_hxl12"]
 [ext_resource type="FontFile" uid="uid://bsbn6wphuu3nh" path="res://Resources/Font.ttf" id="2_8s0u5"]
 [ext_resource type="Texture2D" uid="uid://deh46ylnqx6qi" path="res://icon.svg" id="2_qjuej"]
 [ext_resource type="AudioStream" uid="uid://by4q71mfeau6c" path="res://Resources/Sound Effects/Whoosh.wav" id="3_b6kgu"]
+[ext_resource type="PackedScene" uid="uid://c4fmn6h3lpp4s" path="res://Nodes/Character.tscn" id="4_2jqh3"]
 [ext_resource type="AudioStream" uid="uid://236dfbhpjqem" path="res://Resources/Sound Effects/Select.wav" id="4_fj4vb"]
 [ext_resource type="AudioStream" uid="uid://ctrvqr6o00mrh" path="res://Resources/Sound Effects/Good Target.wav" id="6_jdj2w"]
 [ext_resource type="AudioStream" uid="uid://dlj3m5lvgkvj8" path="res://Resources/Sound Effects/Wrong.wav" id="7_2jpv7"]
@@ -327,6 +328,8 @@ offset_bottom = 128.0
 theme_override_font_sizes/font_size = 8
 disabled = true
 text = "Confirm"
+
+[node name="Character" parent="Target" instance=ExtResource("4_2jqh3")]
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 autoplay = "Show"
