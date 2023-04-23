@@ -1,0 +1,565 @@
+[gd_scene load_steps=23 format=3 uid="uid://bd68dj86powo3"]
+
+[ext_resource type="Script" path="res://Scripts/Interface.gd" id="1_gojyk"]
+[ext_resource type="Texture2D" uid="uid://52w2jh8j4exa" path="res://Resources/Polaroid.png" id="1_qaay7"]
+[ext_resource type="PackedScene" uid="uid://djhn3dp0oyw1n" path="res://Nodes/Citizen/Character.tscn" id="2_fv04m"]
+[ext_resource type="FontFile" uid="uid://b5d0tvtn3ym63" path="res://Resources/Sound Effects/Font.ttf" id="2_iosgj"]
+[ext_resource type="FontFile" uid="uid://bsbn6wphuu3nh" path="res://Resources/Font.ttf" id="3_ur2l0"]
+[ext_resource type="AudioStream" uid="uid://oyhghplvxax" path="res://Resources/Sound Effects/Flip.ogg" id="4_28kym"]
+[ext_resource type="AudioStream" uid="uid://dlj3m5lvgkvj8" path="res://Resources/Sound Effects/Wrong.wav" id="5_1o5t5"]
+[ext_resource type="AudioStream" uid="uid://ctrvqr6o00mrh" path="res://Resources/Sound Effects/Good Target.wav" id="5_jd6x2"]
+[ext_resource type="AudioStream" uid="uid://dtuhnr87k4f8k" path="res://Resources/Background.mp3" id="7_x00f4"]
+[ext_resource type="AudioStream" uid="uid://by4q71mfeau6c" path="res://Resources/Sound Effects/Whoosh.wav" id="8_tywnc"]
+[ext_resource type="AudioStream" uid="uid://cy4nq1gx2tcse" path="res://Resources/Sound Effects/Confirm.wav" id="9_3ear6"]
+
+[sub_resource type="FontVariation" id="FontVariation_j380r"]
+base_font = ExtResource("2_iosgj")
+
+[sub_resource type="FontVariation" id="FontVariation_bv8bj"]
+base_font = ExtResource("3_ur2l0")
+
+[sub_resource type="Animation" id="Animation_1qcjc"]
+resource_name = "Switch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(0, 4), Vector2(4, 4)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"regenerate_enemy"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flip")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6s1ug"]
+_data = {
+"Switch": SubResource("Animation_1qcjc")
+}
+
+[sub_resource type="Animation" id="Animation_m7ocy"]
+resource_name = "End Screen"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polaroid:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0.752941), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Music:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, -16.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(384, 768), Vector2(384, 384)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Button2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(384, 832), Vector2(384, 512)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Score:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(-0.00217629, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(448, 64), Vector2(448, 128)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Modulate:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.752941)]
+}
+
+[sub_resource type="Animation" id="Animation_jjgyq"]
+resource_name = "Good Flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Modulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 1, 0, 0.0313726), Color(0, 1, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Good")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ub642"]
+resource_name = "Red Flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Modulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 0, 0, 0.0313726), Color(1, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bad")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_l6m2g"]
+resource_name = "Show"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polaroid:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(512, 960), Vector2(512, 384)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Modulate:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Confirm:disabled")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Confirm:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.2),
+"transitions": PackedFloat32Array(1, -2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Polaroid:scale")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 6)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Polaroid/Flip")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Score:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yphmh"]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Confirm:disabled")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Confirm:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Polaroid:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(512, 384), Vector2(896, 128)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Polaroid:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(6, 6), Vector2(4, 4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Modulate:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Polaroid:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.752941)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Whoosh")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Confirm2")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Music")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Score:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7lnlq"]
+resource_name = "Switch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polaroid:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, -2, -2),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(0, 4), Vector2(4, 4)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"regenerate_enemy"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7rbp"]
+_data = {
+"End Screen": SubResource("Animation_m7ocy"),
+"Good Flash": SubResource("Animation_jjgyq"),
+"Red Flash": SubResource("Animation_ub642"),
+"Show": SubResource("Animation_l6m2g"),
+"Start": SubResource("Animation_yphmh"),
+"Switch": SubResource("Animation_7lnlq")
+}
+
+[node name="Interface" type="Node"]
+process_mode = 3
+script = ExtResource("1_gojyk")
+
+[node name="Modulate" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(14.544, 0)
+offset_right = 1024.0
+offset_bottom = 768.0
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="Score" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 448.0
+offset_top = 64.0006
+offset_right = 576.0
+offset_bottom = 131.001
+pivot_offset = Vector2(64, 32)
+theme_override_fonts/font = SubResource("FontVariation_j380r")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 768.0
+offset_right = 640.0
+offset_bottom = 832.0
+theme_override_fonts/font = SubResource("FontVariation_bv8bj")
+theme_override_font_sizes/font_size = 24
+text = "Main Menu"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 832.0
+offset_right = 640.0
+offset_bottom = 896.0
+theme_override_fonts/font = SubResource("FontVariation_bv8bj")
+theme_override_font_sizes/font_size = 24
+text = "Leaderboards"
+
+[node name="Polaroid" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.752941)
+texture_filter = 1
+position = Vector2(512, 384)
+scale = Vector2(6, 6)
+texture = ExtResource("1_qaay7")
+
+[node name="Character" parent="Polaroid" instance=ExtResource("2_fv04m")]
+position = Vector2(0, -5.33333)
+scale = Vector2(1.5, 1.5)
+unique_character = true
+
+[node name="Animator" type="AnimationPlayer" parent="Polaroid"]
+libraries = {
+"": SubResource("AnimationLibrary_6s1ug")
+}
+
+[node name="Flip" type="AudioStreamPlayer" parent="Polaroid"]
+stream = ExtResource("4_28kym")
+volume_db = 8.0
+
+[node name="Confirm" type="Button" parent="."]
+offset_left = 448.0
+offset_top = 576.0
+offset_right = 576.0
+offset_bottom = 640.0
+theme_override_fonts/font = SubResource("FontVariation_bv8bj")
+theme_override_font_sizes/font_size = 24
+text = "Confirm"
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+autoplay = "Show"
+method_call_mode = 1
+libraries = {
+"": SubResource("AnimationLibrary_k7rbp")
+}
+
+[node name="Bad" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1o5t5")
+volume_db = 16.0
+pitch_scale = 3.0
+
+[node name="Good" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jd6x2")
+volume_db = -8.0
+pitch_scale = 2.0
+
+[node name="Whoosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tywnc")
+pitch_scale = 0.8
+
+[node name="Confirm2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3ear6")
+volume_db = 8.0
+pitch_scale = 0.8
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_x00f4")
+
+[connection signal="pressed" from="Confirm" to="." method="confirmed"]

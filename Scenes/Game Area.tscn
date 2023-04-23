@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1k10qmlaynca"]
+
+[ext_resource type="Script" path="res://Scenes/Area.gd" id="1_fmhwb"]
+[ext_resource type="PackedScene" uid="uid://d1trk0jt0c2kj" path="res://Nodes/Building.tscn" id="1_vq1j7"]
+[ext_resource type="PackedScene" uid="uid://bvtn1wge8krbm" path="res://Nodes/Citizen/Citizen.tscn" id="2_txck8"]
+[ext_resource type="PackedScene" uid="uid://bd68dj86powo3" path="res://Nodes/Interface.tscn" id="3_lupjt"]
+[ext_resource type="AudioStream" uid="uid://bhxila22t1jr" path="res://Resources/Crowd.wav" id="4_jmjbi"]
+[ext_resource type="AudioStream" uid="uid://c60n6mtf4lpvp" path="res://Resources/Sound Effects/Fire.mp3" id="5_itfnw"]
+
+[node name="Game Area" type="Node"]
+process_mode = 1
+script = ExtResource("1_fmhwb")
+citizen_node = ExtResource("2_txck8")
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Building" parent="." instance=ExtResource("1_vq1j7")]
+position = Vector2(512, 384)
+
+[node name="Interface" parent="." instance=ExtResource("3_lupjt")]
+
+[node name="Crowd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jmjbi")
+volume_db = -16.0
+autoplay = true
+
+[node name="Fire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_itfnw")
+
+[node name="Spawner" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Shake" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Spawner" to="." method="spawn_enemy"]
+[connection signal="timeout" from="Shake" to="." method="stop_shaking"]

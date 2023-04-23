@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvf04kkoqyd8e"]
+[gd_scene load_steps=12 format=3 uid="uid://dvf04kkoqyd8e"]
 
 [ext_resource type="FontFile" uid="uid://bsbn6wphuu3nh" path="res://Resources/Font.ttf" id="1_ntw0g"]
 [ext_resource type="Script" path="res://Leaderboard.gd" id="1_v631y"]
 [ext_resource type="PackedScene" uid="uid://dfcnf85s3ovpc" path="res://Nodes/Leaderboard/Information.tscn" id="2_0kj4x"]
+[ext_resource type="Texture2D" uid="uid://63fmgke47hmj" path="res://Resources/Background.png" id="4_sf2wy"]
 
 [sub_resource type="GDScript" id="GDScript_y4omf"]
 script/source = "extends Control
@@ -39,21 +40,6 @@ _data = {
 "Show": SubResource("Animation_u7gqa")
 }
 
-[sub_resource type="Animation" id="Animation_fyeoo"]
-resource_name = "Show"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(384, 768), Vector2(384, 576)]
-}
-
 [sub_resource type="Animation" id="Animation_5n77h"]
 resource_name = "Go Back"
 tracks/0/type = "value"
@@ -69,6 +55,21 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(-1024, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_fyeoo"]
+resource_name = "Show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(384, 768), Vector2(384, 576)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e2ma7"]
 _data = {
 "Go Back": SubResource("Animation_5n77h"),
@@ -79,6 +80,13 @@ _data = {
 layout_mode = 3
 anchors_preset = 0
 script = SubResource("GDScript_y4omf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Background" type="Sprite2D" parent="Camera2D"]
+texture = ExtResource("4_sf2wy")
+centered = false
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
@@ -91,6 +99,7 @@ theme_override_font_sizes/font_size = 24
 text = "Go To Main Menu"
 
 [node name="Leaderboard" type="ScrollContainer" parent="."]
+layout_mode = 0
 offset_left = 256.0
 offset_top = -384.0
 offset_right = 768.0
@@ -112,9 +121,6 @@ autoplay = "Show"
 libraries = {
 "": SubResource("AnimationLibrary_e2ma7")
 }
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

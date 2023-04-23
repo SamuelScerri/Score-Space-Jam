@@ -1,0 +1,49 @@
+[gd_scene load_steps=23 format=3 uid="uid://djhn3dp0oyw1n"]
+
+[ext_resource type="Texture2D" uid="uid://chc4gk2ejpgb4" path="res://Resources/Character Features/Basis.png" id="1_bha67"]
+[ext_resource type="Texture2D" uid="uid://bt31ydngavgkj" path="res://Resources/Character Features/Hats/Hat 1.png" id="2_1qxbn"]
+[ext_resource type="Script" path="res://Scripts/Character.gd" id="2_eewgy"]
+[ext_resource type="Texture2D" uid="uid://dycs6b52v785q" path="res://Resources/Character Features/Eyes/Eye 2.png" id="3_2lpp6"]
+[ext_resource type="Texture2D" uid="uid://dsgfs7t0rx1rh" path="res://Resources/Character Features/Shirt/Shirt 1.png" id="4_4jidk"]
+[ext_resource type="Texture2D" uid="uid://cttlsadn5dls2" path="res://Resources/Character Features/Hats/Hat 2.png" id="4_png7k"]
+[ext_resource type="Texture2D" uid="uid://bd2872s2qudgc" path="res://Resources/Character Features/Hats/Hat 3.png" id="5_ib2te"]
+[ext_resource type="Texture2D" uid="uid://dp7qfnj7e5sp8" path="res://Resources/Character Features/Pants/Pants 1.png" id="5_rxlxp"]
+[ext_resource type="Texture2D" uid="uid://dqr8520p0sk6x" path="res://Resources/Character Features/Hats/Hat 4.png" id="6_8r6sv"]
+[ext_resource type="Texture2D" uid="uid://6rsby4frfjki" path="res://Resources/Character Features/Hats/Hat 5.png" id="7_o4hst"]
+[ext_resource type="Texture2D" uid="uid://dloxgplf7sotg" path="res://Resources/Character Features/Eyes/Eye 1.png" id="8_1g35h"]
+[ext_resource type="Texture2D" uid="uid://u1wit06f8g62" path="res://Resources/Character Features/Eyes/Eye 3.png" id="10_64lol"]
+[ext_resource type="Texture2D" uid="uid://cj1j4ybbay8gr" path="res://Resources/Character Features/Eyes/Eye 4.png" id="11_frp7d"]
+[ext_resource type="Texture2D" uid="uid://vq1q52ffmkvl" path="res://Resources/Character Features/Eyes/Eye 5.png" id="12_gvxa6"]
+[ext_resource type="Texture2D" uid="uid://duovbxd28w7qx" path="res://Resources/Character Features/Shirt/Shirt 2.png" id="14_jreyp"]
+[ext_resource type="Texture2D" uid="uid://b8eq8c82cjjxa" path="res://Resources/Character Features/Shirt/Shirt 3.png" id="15_ww4pp"]
+[ext_resource type="Texture2D" uid="uid://dwsw4amc4hy0l" path="res://Resources/Character Features/Shirt/Shirt 4.png" id="16_cgnu1"]
+[ext_resource type="Texture2D" uid="uid://dbxvc0el55v5g" path="res://Resources/Character Features/Shirt/Shirt 5.png" id="17_pdktm"]
+[ext_resource type="Texture2D" uid="uid://cwldul6s63wic" path="res://Resources/Character Features/Pants/Pants 2.png" id="19_0ur3t"]
+[ext_resource type="Texture2D" uid="uid://c1bqx5nmy4i31" path="res://Resources/Character Features/Pants/Pants 3.png" id="20_1m2mh"]
+[ext_resource type="Texture2D" uid="uid://cfbevutvq0axq" path="res://Resources/Character Features/Pants/Pants 4.png" id="21_0v1ot"]
+[ext_resource type="Texture2D" uid="uid://bp4tsvr6njupx" path="res://Resources/Character Features/Pants/Pants 5.png" id="22_r2b5c"]
+
+[node name="Character" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_bha67")
+script = ExtResource("2_eewgy")
+hats = Array[CompressedTexture2D]([ExtResource("2_1qxbn"), ExtResource("4_png7k"), ExtResource("5_ib2te"), ExtResource("6_8r6sv"), ExtResource("7_o4hst")])
+eyes = Array[CompressedTexture2D]([ExtResource("8_1g35h"), ExtResource("3_2lpp6"), ExtResource("10_64lol"), ExtResource("11_frp7d"), ExtResource("12_gvxa6")])
+shirts = Array[CompressedTexture2D]([ExtResource("4_4jidk"), ExtResource("14_jreyp"), ExtResource("15_ww4pp"), ExtResource("16_cgnu1"), ExtResource("17_pdktm")])
+pants = Array[CompressedTexture2D]([ExtResource("5_rxlxp"), ExtResource("19_0ur3t"), ExtResource("20_1m2mh"), ExtResource("21_0v1ot"), ExtResource("22_r2b5c")])
+
+[node name="Hat" type="Sprite2D" parent="."]
+position = Vector2(0, -6.5)
+texture = ExtResource("2_1qxbn")
+
+[node name="Eye" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("3_2lpp6")
+
+[node name="Shirt" type="Sprite2D" parent="."]
+position = Vector2(0, 2.5)
+texture = ExtResource("4_4jidk")
+
+[node name="Pants" type="Sprite2D" parent="."]
+position = Vector2(0, 7)
+texture = ExtResource("5_rxlxp")

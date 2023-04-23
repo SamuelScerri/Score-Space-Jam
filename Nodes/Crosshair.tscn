@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://gi8faj3ndj64"]
+
+[ext_resource type="Texture2D" uid="uid://d3s66jmjsfed6" path="res://Resources/Crosshair.png" id="1_m8k5s"]
+
+[sub_resource type="GDScript" id="GDScript_6cecx"]
+script/source = "extends Sprite2D
+
+
+func _process(delta):
+	global_position = get_viewport().get_mouse_position()
+"
+
+[node name="Crosshair" type="Sprite2D"]
+top_level = true
+z_index = 4096
+texture_filter = 3
+scale = Vector2(4, 4)
+texture = ExtResource("1_m8k5s")
+script = SubResource("GDScript_6cecx")

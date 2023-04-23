@@ -13,7 +13,7 @@ func _on_animator_animation_finished(anim_name):
 	if anim_name == "Show Leaderboard":
 		get_tree().change_scene_to_file("res://Nodes/Leaderboard/Leaderboard.tscn")
 	elif anim_name == "Start Game":
-		get_tree().change_scene_to_file("res://Game Area.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Game Area.tscn")
 
 func _on_start_pressed():
 	$Animator.play("Start Game")

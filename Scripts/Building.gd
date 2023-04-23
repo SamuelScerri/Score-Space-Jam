@@ -1,20 +1,16 @@
-extends StaticBody2D
+extends Node
 
-var health = 100
+var health = 100.0
 
-func _ready():
-	update_information()
-
-func damage(amount: int = 10):
+func damage(amount: int):
+	$Feedback.play("Damage")
+	$Audio.play()
+	Global.get_current_game_area().shake_camera()
+	$ColorRect.scale.x = lerpf(0, 1, health / 100.0)
+	$ColorRect.color.g = lerpf(0, 1, health / 100.0)
+	$ColorRect.color.b = lerpf(0, 1, health / 100.0)
+	
 	health -= amount
-	
-	update_information()
-	
-	Global.current_game_area.do_shake()
-	$Animation.play("Damage")
-	
-	if health <= 0:
-		Global.current_game_area.end_game()
+	if health < 0:
+		Global.get_current_game_area().end_game()
 
-func update_information():
-	$Sprite/Label.text = str(health)

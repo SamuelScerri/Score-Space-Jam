@@ -1,33 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://b38v3dryhbbjo"]
+[gd_scene load_steps=7 format=3 uid="uid://d1trk0jt0c2kj"]
 
-[ext_resource type="Texture2D" uid="uid://deh46ylnqx6qi" path="res://icon.svg" id="1_kp4ft"]
-[ext_resource type="Script" path="res://Scripts/Building.gd" id="1_pgcdw"]
-[ext_resource type="AudioStream" uid="uid://crt12k6g34oc0" path="res://Resources/Sound Effects/Explosion.wav" id="3_omg0c"]
+[ext_resource type="Script" path="res://Scripts/Building.gd" id="1_nua7d"]
+[ext_resource type="AudioStream" uid="uid://crt12k6g34oc0" path="res://Resources/Sound Effects/Explosion.wav" id="2_1uxn0"]
+[ext_resource type="Texture2D" uid="uid://ch2h83aa56lfw" path="res://Resources/Dungeon.png" id="2_f7pvo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gcbb"]
-size = Vector2(1, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmhfr"]
+size = Vector2(128, 128)
 
-[sub_resource type="Animation" id="Animation_gtp3u"]
-resource_name = "Damage"
+[sub_resource type="Animation" id="Animation_wp5wf"]
+resource_name = "Hurt"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:scale")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Art:scale")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.2),
 "transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+"values": [Vector2(4, 4), Vector2(5, 5), Vector2(4, 4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:modulate")
-tracks/1/interp = 2
+tracks/1/path = NodePath("Art:modulate")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
@@ -35,55 +35,36 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Damage")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nwt5y"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r0deb"]
 _data = {
-"Damage": SubResource("Animation_gtp3u")
+"Damage": SubResource("Animation_wp5wf")
 }
 
 [node name="Building" type="StaticBody2D" groups=["Building"]]
-position = Vector2(512, 384)
-input_pickable = true
-script = ExtResource("1_pgcdw")
-metadata/_edit_group_ = true
+script = ExtResource("1_nua7d")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_kp4ft")
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="Sprite"]
-offset_left = -64.0
-offset_top = -128.0
-offset_right = 64.0
-offset_bottom = -64.0
-text = "Building"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Art" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_f7pvo")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8gcbb")
+shape = SubResource("RectangleShape2D_fmhfr")
 
-[node name="Animation" type="AnimationPlayer" parent="."]
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1uxn0")
+max_polyphony = 64
+
+[node name="Feedback" type="AnimationPlayer" parent="."]
 method_call_mode = 1
 libraries = {
-"": SubResource("AnimationLibrary_nwt5y")
+"": SubResource("AnimationLibrary_r0deb")
 }
 
-[node name="Damage" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_omg0c")
-volume_db = -16.0
-max_polyphony = 16
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -64.0
+offset_top = -80.0
+offset_right = 64.0
+offset_bottom = -74.0
+pivot_offset = Vector2(64, 3)
