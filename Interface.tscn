@@ -182,7 +182,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 1, 0, 0.12549), Color(0, 1, 0, 0)]
+"values": [Color(0, 1, 0, 0.0627451), Color(0, 1, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_oqim6"]
@@ -215,7 +215,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 0, 0, 0.12549), Color(1, 0, 0, 0)]
+"values": [Color(1, 0, 0, 0.0627451), Color(1, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_gr5k4"]
@@ -313,12 +313,11 @@ color = Color(0, 0, 0, 1)
 
 [node name="Modulate" type="CanvasModulate" parent="."]
 modulate = Color(0, 0, 0, 1)
-color = Color(0, 0, 0, 1)
 
 [node name="Target" type="Sprite2D" parent="."]
 z_index = 4096
 texture_filter = 1
-position = Vector2(512, 896)
+position = Vector2(512, 384)
 scale = Vector2(6, 6)
 texture = ExtResource("3_2mpsh")
 

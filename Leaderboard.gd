@@ -4,9 +4,6 @@ var leaderboardDisplayed: bool = false
 
 @export var information_template: PackedScene
 
-func _ready():
-	Leaderboard._authentication_request()
-
 func _process(_delta):
 	if Leaderboard.leaderboardInformation != null and not leaderboardDisplayed:
 		for n in Leaderboard.leaderboardInformation.items.size():

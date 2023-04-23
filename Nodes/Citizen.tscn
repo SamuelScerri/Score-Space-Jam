@@ -112,6 +112,7 @@ input_pickable = true
 script = ExtResource("1_slcp4")
 
 [node name="Character" parent="." instance=ExtResource("2_xu32x")]
+rotation = -0.122173
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_iol2f")

@@ -8,7 +8,7 @@ var leaderboard_key = "leaderboardKey"
 var session_token = ""
 var score = 0
 
-var custom_name = "Guest"
+var custom_name = ""
 
 # HTTP Request node can only handle one call per node
 var auth_http = HTTPRequest.new()
@@ -19,8 +19,8 @@ var get_name_http = HTTPRequest.new()
 
 var leaderboardInformation = null
 
-#func _ready():
-	#_authentication_request()
+func _ready():
+	_authentication_request()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
@@ -71,7 +71,8 @@ func _on_authentication_request_completed(result, response_code, headers, body):
 	# Clear node
 	auth_http.queue_free()
 	# Get leaderboards
-	_change_player_name(custom_name)
+	_get_player_name()
+	#_change_player_name(custom_name)
 	#_upload_score(10)
 	#_upload_score(20)
 	_get_leaderboards()
@@ -160,6 +161,7 @@ func _get_player_name():
 	# Send request
 	get_name_http.request(url, headers, HTTPClient.METHOD_GET, "")
 	
+	
 func _on_player_get_name_request_completed(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	
@@ -167,6 +169,7 @@ func _on_player_get_name_request_completed(result, response_code, headers, body)
 	print(json)
 	# Print player name
 	print(json.name)
+	custom_name = json.name
 
 func _on_upload_score_request_completed(result, response_code, headers, body) :
 	var json = JSON.parse_string(body.get_string_from_utf8())
