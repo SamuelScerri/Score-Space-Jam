@@ -75,7 +75,7 @@ func _on_authentication_request_completed(result, response_code, headers, body):
 	#_change_player_name(custom_name)
 	#_upload_score(10)
 	#_upload_score(20)
-	_get_leaderboards()
+	
 	#_get_player_name()
 	
 
@@ -148,6 +148,7 @@ func _on_player_set_name_request_completed(result, response_code, headers, body)
 	# Print data
 	print(json)
 	set_name_http.queue_free()
+	_upload_score(score)
 
 func _get_player_name():
 	print("Getting player name")

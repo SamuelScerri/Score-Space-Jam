@@ -33,10 +33,12 @@ func show_end_screen():
 
 func to_main_menu():
 	$Animator.play("Go To Main Menu")
+	$Confirm2.play()
 
 
 func to_leaderboard():
 	$Animator.play("Go To Leaderboards")
+	$Confirm2.play()
 
 
 func _on_animator_animation_finished(anim_name):
@@ -44,3 +46,11 @@ func _on_animator_animation_finished(anim_name):
 		get_tree().change_scene_to_file("res://Main Menu.tscn")
 	elif anim_name == "Go To Leaderboards":
 		get_tree().change_scene_to_file("res://Nodes/Leaderboard/Leaderboard.tscn")
+
+
+func _on_button_3_pressed():
+	if $Button4.text.length() > 0:
+		Leaderboard._change_player_name($Button4.text)
+	
+	$Confirm2.play()
+	$Animator.play("Go To Leaderboards")

@@ -63,6 +63,7 @@ func _process(_delta):
 func end_game():
 	game_running = false
 	$Interface.show_end_screen()
+	Leaderboard.score = score
 
 func shake_camera():
 	should_shake = true

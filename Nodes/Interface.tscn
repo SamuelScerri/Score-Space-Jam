@@ -153,7 +153,19 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(384, 896), Vector2(384, 640)]
+"values": [Vector2(512, 896), Vector2(512, 640)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Button4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(256, 896), Vector2(256, 640)]
 }
 
 [sub_resource type="Animation" id="Animation_jjgyq"]
@@ -618,15 +630,25 @@ theme_override_font_sizes/font_size = 24
 text = "Leaderboards"
 
 [node name="Button3" type="Button" parent="."]
-offset_left = 384.0
+offset_left = 512.0
 offset_top = 896.0
-offset_right = 640.0
+offset_right = 768.0
 offset_bottom = 960.0
 theme_override_fonts/font = SubResource("FontVariation_bv8bj")
 theme_override_font_sizes/font_size = 24
 text = "Upload Score"
 
+[node name="Button4" type="TextEdit" parent="."]
+offset_left = 256.0
+offset_top = 896.0
+offset_right = 512.0
+offset_bottom = 960.0
+theme_override_fonts/font = SubResource("FontVariation_bv8bj")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Enter Name"
+
 [node name="Polaroid" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.752941)
 texture_filter = 1
 position = Vector2(512, 384)
 scale = Vector2(6, 6)
@@ -653,7 +675,6 @@ offset_right = 576.0
 offset_bottom = 640.0
 theme_override_fonts/font = SubResource("FontVariation_bv8bj")
 theme_override_font_sizes/font_size = 24
-disabled = true
 text = "Confirm"
 
 [node name="Animator" type="AnimationPlayer" parent="."]
@@ -691,5 +712,6 @@ volume_db = -16.0
 
 [connection signal="pressed" from="Button" to="." method="to_main_menu"]
 [connection signal="pressed" from="Button2" to="." method="to_leaderboard"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Confirm" to="." method="confirmed"]
 [connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]

@@ -4,6 +4,12 @@ var leaderboardDisplayed: bool = false
 
 @export var information_template: PackedScene
 
+
+
+func _ready():
+	Leaderboard.leaderboardInformation = null
+	Leaderboard._get_leaderboards()
+
 func _process(_delta):
 	if Leaderboard.leaderboardInformation != null and not leaderboardDisplayed:
 		for n in Leaderboard.leaderboardInformation.items.size():
@@ -14,5 +20,5 @@ func _process(_delta):
 			#leaderboardFormatted += str(json.items[n].player.id)+str(" - ")
 			#leaderboardFormatted += str(json.items[n].score)+str("\n")
 		
-		$AnimationPlayer.play("Show")
+		#$AnimationPlayer.play("Show")
 		leaderboardDisplayed = true
