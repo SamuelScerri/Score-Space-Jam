@@ -102,7 +102,6 @@ _data = {
 }
 
 [node name="Citizen" type="CharacterBody2D" groups=["Citizen"]]
-modulate = Color(1, 1, 1, 0)
 self_modulate = Color(0, 1, 1, 1)
 z_index = -4095
 position = Vector2(512, 384)

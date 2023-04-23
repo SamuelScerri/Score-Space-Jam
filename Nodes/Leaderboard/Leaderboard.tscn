@@ -1,0 +1,120 @@
+[gd_scene load_steps=11 format=3 uid="uid://dvf04kkoqyd8e"]
+
+[ext_resource type="FontFile" uid="uid://bsbn6wphuu3nh" path="res://Resources/Font.ttf" id="1_ntw0g"]
+[ext_resource type="Script" path="res://Leaderboard.gd" id="1_v631y"]
+[ext_resource type="PackedScene" uid="uid://dfcnf85s3ovpc" path="res://Nodes/Leaderboard/Information.tscn" id="2_0kj4x"]
+
+[sub_resource type="GDScript" id="GDScript_y4omf"]
+script/source = "extends Control
+
+func _on_button_pressed():
+	$AnimationPlayer.play(\"Go Back\")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == \"Go Back\":
+		get_tree().change_scene_to_file(\"res://Main Menu.tscn\")
+"
+
+[sub_resource type="FontVariation" id="FontVariation_c2ie6"]
+base_font = ExtResource("1_ntw0g")
+
+[sub_resource type="Animation" id="Animation_u7gqa"]
+resource_name = "Show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(256, -384), Vector2(256, 128)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uytej"]
+_data = {
+"Show": SubResource("Animation_u7gqa")
+}
+
+[sub_resource type="Animation" id="Animation_fyeoo"]
+resource_name = "Show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(384, 768), Vector2(384, 576)]
+}
+
+[sub_resource type="Animation" id="Animation_5n77h"]
+resource_name = "Go Back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1024, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e2ma7"]
+_data = {
+"Go Back": SubResource("Animation_5n77h"),
+"Show": SubResource("Animation_fyeoo")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = SubResource("GDScript_y4omf")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 384.0
+offset_top = 768.0
+offset_right = 640.0
+offset_bottom = 832.0
+theme_override_fonts/font = SubResource("FontVariation_c2ie6")
+theme_override_font_sizes/font_size = 24
+text = "Go To Main Menu"
+
+[node name="Leaderboard" type="ScrollContainer" parent="."]
+offset_left = 256.0
+offset_top = -384.0
+offset_right = 768.0
+follow_focus = true
+script = ExtResource("1_v631y")
+information_template = ExtResource("2_0kj4x")
+
+[node name="Container" type="VBoxContainer" parent="Leaderboard"]
+layout_mode = 2
+alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Leaderboard"]
+libraries = {
+"": SubResource("AnimationLibrary_uytej")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Show"
+libraries = {
+"": SubResource("AnimationLibrary_e2ma7")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

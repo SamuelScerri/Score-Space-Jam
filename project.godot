@@ -11,19 +11,19 @@ config_version=5
 [application]
 
 config/name="Score Space Jam"
-run/main_scene="res://Game Area.tscn"
+run/main_scene="res://Main Menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+Leaderboard="*res://Scripts/Leaderboard.gd"
 
 [display]
 
 window/size/viewport_width=1024
 window/size/viewport_height=768
-window/size/mode=4
 window/size/resizable=false
 window/stretch/mode="viewport"
 

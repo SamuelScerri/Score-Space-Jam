@@ -6,7 +6,7 @@ var score: int = 0
 @onready var camera = $Camera
 @onready var shake_duration = $Shake
 
-@export var max_citizens_in_area = 48
+@export var max_citizens_in_area = 16
 @export var enemy_chance_percentage = .2
 
 @export var citizen_node: PackedScene
