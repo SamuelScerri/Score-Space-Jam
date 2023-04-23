@@ -6,6 +6,7 @@ func _on_text_edit_text_changed():
 
 func _on_leaderboard_pressed():
 	#Leaderboard._authentication_request()
+	$Confirm.play()
 	$Animator.play("Show Leaderboard")
 
 
@@ -16,4 +17,5 @@ func _on_animator_animation_finished(anim_name):
 		get_tree().change_scene_to_file("res://Scenes/Game Area.tscn")
 
 func _on_start_pressed():
+	$Confirm.play()
 	$Animator.play("Start Game")

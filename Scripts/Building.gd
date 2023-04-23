@@ -1,6 +1,6 @@
 extends Node
 
-var health = 100.0
+var health = 0
 
 func damage(amount: int):
 	$Feedback.play("Damage")

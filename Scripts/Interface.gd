@@ -29,3 +29,18 @@ func regenerate_enemy():
 
 func show_end_screen():
 	$Animator.play("End Screen")
+
+
+func to_main_menu():
+	$Animator.play("Go To Main Menu")
+
+
+func to_leaderboard():
+	$Animator.play("Go To Leaderboards")
+
+
+func _on_animator_animation_finished(anim_name):
+	if anim_name == "Go To Main Menu":
+		get_tree().change_scene_to_file("res://Main Menu.tscn")
+	elif anim_name == "Go To Leaderboards":
+		get_tree().change_scene_to_file("res://Nodes/Leaderboard/Leaderboard.tscn")
