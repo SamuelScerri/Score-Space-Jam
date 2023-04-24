@@ -461,7 +461,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Polaroid:modulate")
+tracks/5/path = NodePath("Polaroid:self_modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -537,6 +537,18 @@ tracks/10/keys = {
 "args": [0.0],
 "method": &"play"
 }]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Polaroid/Character:self_modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.752941)]
 }
 
 [sub_resource type="Animation" id="Animation_7lnlq"]
@@ -674,6 +686,7 @@ offset_right = 576.0
 offset_bottom = 640.0
 theme_override_fonts/font = SubResource("FontVariation_bv8bj")
 theme_override_font_sizes/font_size = 24
+disabled = true
 text = "Confirm"
 
 [node name="Animator" type="AnimationPlayer" parent="."]
