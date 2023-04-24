@@ -74,7 +74,8 @@ func _on_authentication_request_completed(result, response_code, headers, body):
 	# Clear node
 	auth_http.queue_free()
 	# Get leaderboards
-	custom_name = _get_player_name()
+	#custom_name = _get_player_name()
+	_get_player_name()
 	#_change_player_name(custom_name)
 	#_upload_score(10)
 	#_upload_score(20)
@@ -151,6 +152,7 @@ func _on_player_set_name_request_completed(result, response_code, headers, body)
 	# Print data
 	print(json)
 	set_name_http.queue_free()
+	_get_player_name()
 	_upload_score(score)
 
 func _get_player_name():
