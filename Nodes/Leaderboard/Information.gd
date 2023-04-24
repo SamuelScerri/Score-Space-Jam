@@ -1,5 +1,5 @@
 extends ColorRect
 
-func set_information(name, score):
-	$Player.text = name
+func set_information(new_name, score):
+	$Player.text = new_name
 	$Score.text = score
