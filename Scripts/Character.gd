@@ -36,7 +36,7 @@ func change_clothes():
 		0:
 			$Character.modulate = Color8(255, 205, 128)
 		1:
-			$Character.modulate = Color8(255, 255, 255)
+			$Character.modulate = Color8(83, 83, 83)
 		2:
 			$Character.modulate = Color8(170, 170, 170)
 		3:
