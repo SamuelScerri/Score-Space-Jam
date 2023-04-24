@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cy4nq1gx2tcse" path="res://Resources/Sound Effects/Confirm.wav" id="5_7yxsc"]
 
 [sub_resource type="GDScript" id="GDScript_y4omf"]
-script/source = "extends Control
+script/source = "extends Node
 
 
 func _on_button_pressed():
@@ -84,9 +84,7 @@ _data = {
 "Show": SubResource("Animation_fyeoo")
 }
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="Control" type="Node"]
 script = SubResource("GDScript_y4omf")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -94,27 +92,27 @@ texture = ExtResource("4_sf2wy")
 centered = false
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 2
 offset_left = 384.0
-offset_top = 768.0
+offset_top = 576.0
 offset_right = 640.0
-offset_bottom = 832.0
+offset_bottom = 640.0
 theme_override_fonts/font = SubResource("FontVariation_c2ie6")
 theme_override_font_sizes/font_size = 24
 text = "Go To Main Menu"
 
 [node name="Leaderboard" type="ScrollContainer" parent="."]
-layout_mode = 0
 offset_left = 256.0
-offset_top = -384.0
+offset_top = 128.0
 offset_right = 768.0
+offset_bottom = 512.0
 follow_focus = true
+horizontal_scroll_mode = 0
 script = ExtResource("1_v631y")
 information_template = ExtResource("2_0kj4x")
 
 [node name="Container" type="VBoxContainer" parent="Leaderboard"]
+clip_contents = true
 layout_mode = 2
-alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Show"
