@@ -26,6 +26,7 @@ Leaderboard="*res://Scripts/Leaderboard.gd"
 
 window/size/viewport_width=1024
 window/size/viewport_height=768
+window/size/mode=4
 window/size/resizable=false
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://Resources/Crosshair Good.png"

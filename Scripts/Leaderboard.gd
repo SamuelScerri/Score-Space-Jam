@@ -2,7 +2,7 @@ extends Node
 
 # Use this game API key if you want to test it with a functioning leaderboard
 # "987dbd0b9e5eb3749072acc47a210996eea9feb0"
-var game_API_key = "prod_dfdd4b2de49b480d980ee701df06b20c"
+var game_API_key = "prod_bc6db326c75446b9a9a20975aa4ad3c9"
 var development_mode = false
 var leaderboard_key = "leaderboardKey"
 var session_token = ""
