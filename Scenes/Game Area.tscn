@@ -7,8 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://c60n6mtf4lpvp" path="res://Resources/Sound Effects/Fire.mp3" id="5_itfnw"]
 [ext_resource type="Texture2D" uid="uid://dmj5d8slan88w" path="res://Resources/Game Background.png" id="7_o3n2t"]
 
-[node name="Game Area" type="Node"]
+[node name="Game Area" type="Node2D"]
 process_mode = 1
+y_sort_enabled = true
 script = ExtResource("1_fmhwb")
 citizen_node = ExtResource("2_txck8")
 

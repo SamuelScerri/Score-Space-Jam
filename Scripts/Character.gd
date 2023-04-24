@@ -1,4 +1,4 @@
-extends Sprite2D
+extends CanvasGroup
 
 @export var hats: Array[CompressedTexture2D]
 @export var eyes: Array[CompressedTexture2D]

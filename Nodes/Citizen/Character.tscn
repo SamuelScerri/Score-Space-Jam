@@ -23,18 +23,17 @@
 [ext_resource type="Texture2D" uid="uid://cfbevutvq0axq" path="res://Resources/Character Features/Pants/Pants 4.png" id="21_0v1ot"]
 [ext_resource type="Texture2D" uid="uid://bp4tsvr6njupx" path="res://Resources/Character Features/Pants/Pants 5.png" id="22_r2b5c"]
 
-[node name="Character" type="Sprite2D"]
+[node name="Character" type="CanvasGroup"]
 texture_filter = 1
-texture = ExtResource("1_bha67")
 script = ExtResource("2_eewgy")
 hats = Array[CompressedTexture2D]([ExtResource("2_1qxbn"), ExtResource("4_png7k"), ExtResource("5_ib2te"), ExtResource("6_8r6sv"), ExtResource("7_o4hst")])
 eyes = Array[CompressedTexture2D]([ExtResource("8_1g35h"), ExtResource("3_2lpp6"), ExtResource("10_64lol"), ExtResource("11_frp7d"), ExtResource("12_gvxa6")])
 shirts = Array[CompressedTexture2D]([ExtResource("4_4jidk"), ExtResource("14_jreyp"), ExtResource("15_ww4pp"), ExtResource("16_cgnu1"), ExtResource("17_pdktm")])
 pants = Array[CompressedTexture2D]([ExtResource("5_rxlxp"), ExtResource("19_0ur3t"), ExtResource("20_1m2mh"), ExtResource("21_0v1ot"), ExtResource("22_r2b5c")])
 
-[node name="Hat" type="Sprite2D" parent="."]
-position = Vector2(0, -6.5)
-texture = ExtResource("2_1qxbn")
+[node name="Character" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_bha67")
 
 [node name="Eye" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
@@ -47,3 +46,7 @@ texture = ExtResource("4_4jidk")
 [node name="Pants" type="Sprite2D" parent="."]
 position = Vector2(0, 7)
 texture = ExtResource("5_rxlxp")
+
+[node name="Hat" type="Sprite2D" parent="."]
+position = Vector2(0, -6.5)
+texture = ExtResource("2_1qxbn")
