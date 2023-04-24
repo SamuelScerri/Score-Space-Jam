@@ -650,7 +650,7 @@ theme_override_fonts/font = SubResource("FontVariation_bv8bj")
 theme_override_font_sizes/font_size = 24
 text = "Upload Score"
 
-[node name="Button4" type="TextEdit" parent="."]
+[node name="Button4" type="LineEdit" parent="."]
 offset_left = 256.0
 offset_top = 896.0
 offset_right = 512.0
@@ -658,6 +658,7 @@ offset_bottom = 960.0
 theme_override_fonts/font = SubResource("FontVariation_bv8bj")
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter Name"
+alignment = 1
 
 [node name="Polaroid" type="Sprite2D" parent="."]
 texture_filter = 1
