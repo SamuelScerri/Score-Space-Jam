@@ -32,7 +32,6 @@ shirts = Array[CompressedTexture2D]([ExtResource("4_4jidk"), ExtResource("14_jre
 pants = Array[CompressedTexture2D]([ExtResource("5_rxlxp"), ExtResource("19_0ur3t"), ExtResource("20_1m2mh"), ExtResource("21_0v1ot"), ExtResource("22_r2b5c")])
 
 [node name="Character" type="Sprite2D" parent="."]
-modulate = Color(1, 0.803922, 0.501961, 1)
 texture_filter = 1
 texture = ExtResource("22_p7xqd")
 
