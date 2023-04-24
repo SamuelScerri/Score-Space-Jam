@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://d1trk0jt0c2kj" path="res://Nodes/Building.tscn" id="1_vq1j7"]
 [ext_resource type="PackedScene" uid="uid://bvtn1wge8krbm" path="res://Nodes/Citizen/Citizen.tscn" id="2_txck8"]
 [ext_resource type="PackedScene" uid="uid://bd68dj86powo3" path="res://Nodes/Interface.tscn" id="3_lupjt"]
+[ext_resource type="Texture2D" uid="uid://dci8g3l3k6c2c" path="res://Resources/Background2.png" id="3_x21aa"]
 [ext_resource type="AudioStream" uid="uid://c60n6mtf4lpvp" path="res://Resources/Sound Effects/Fire.mp3" id="5_itfnw"]
-[ext_resource type="Texture2D" uid="uid://dmj5d8slan88w" path="res://Resources/Game Background.png" id="7_o3n2t"]
 
 [node name="Game Area" type="Node2D"]
 process_mode = 1
@@ -19,7 +19,7 @@ anchor_mode = 0
 [node name="GameBackground" type="Sprite2D" parent="."]
 z_index = -4096
 position = Vector2(512, 384)
-texture = ExtResource("7_o3n2t")
+texture = ExtResource("3_x21aa")
 
 [node name="Building" parent="." instance=ExtResource("1_vq1j7")]
 position = Vector2(512, 384)
