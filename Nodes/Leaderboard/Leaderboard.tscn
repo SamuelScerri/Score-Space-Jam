@@ -93,18 +93,17 @@ centered = false
 
 [node name="Button" type="Button" parent="."]
 offset_left = 384.0
-offset_top = 576.0
+offset_top = 768.0
 offset_right = 640.0
-offset_bottom = 640.0
+offset_bottom = 832.0
 theme_override_fonts/font = SubResource("FontVariation_c2ie6")
 theme_override_font_sizes/font_size = 24
 text = "Go To Main Menu"
 
 [node name="Leaderboard" type="ScrollContainer" parent="."]
 offset_left = 256.0
-offset_top = 128.0
+offset_top = -384.0
 offset_right = 768.0
-offset_bottom = 512.0
 follow_focus = true
 horizontal_scroll_mode = 0
 script = ExtResource("1_v631y")

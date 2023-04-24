@@ -2,6 +2,7 @@ extends Node
 
 func _ready():
 	$Polaroid/Character.generate_clothes()
+	$Button4.text = Leaderboard.custom_name
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func confirmed():

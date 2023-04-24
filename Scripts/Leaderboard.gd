@@ -29,18 +29,21 @@ func _process(_delta):
 func _authentication_request():
 	# Check if a player session has been saved
 	var player_session_exists = false
-	var file = FileAccess.open("user://LootLocker.data", FileAccess.WRITE_READ)
-	var player_identifier = file.get_as_text()
-	file.close()
-	if(player_identifier.length() > 1):
-		player_session_exists = true
+	var file = FileAccess.open("user://LootLocker.data", FileAccess.READ)
+	var player_identifier
+	
+	if file != null:
+		player_identifier = file.get_as_text()
+		file.close()
+		if(player_identifier.length() > 1):
+			player_session_exists = true
 		
 	## Convert data to json string:
-	var data = { "game_key": game_API_key, "game_version": "0.0.0.1", "development_mode": true }
+	var data = { "game_key": game_API_key, "game_version": "0.0.0.1", "development_mode": development_mode }
 	
 	# If a player session already exists, send with the player identifier
 	if(player_session_exists == true):
-		data = { "game_key": game_API_key, "player_identifier":player_identifier, "game_version": "0.0.0.1", "development_mode": true }
+		data = { "game_key": game_API_key, "player_identifier":player_identifier, "game_version": "0.0.0.1", "development_mode": development_mode }
 	
 	# Add 'Content-Type' header:
 	var headers = ["Content-Type: application/json"]
@@ -71,7 +74,7 @@ func _on_authentication_request_completed(result, response_code, headers, body):
 	# Clear node
 	auth_http.queue_free()
 	# Get leaderboards
-	_get_player_name()
+	custom_name = _get_player_name()
 	#_change_player_name(custom_name)
 	#_upload_score(10)
 	#_upload_score(20)
