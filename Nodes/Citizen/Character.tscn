@@ -1,6 +1,5 @@
 [gd_scene load_steps=23 format=3 uid="uid://djhn3dp0oyw1n"]
 
-[ext_resource type="Texture2D" uid="uid://chc4gk2ejpgb4" path="res://Resources/Character Features/Basis.png" id="1_bha67"]
 [ext_resource type="Texture2D" uid="uid://bt31ydngavgkj" path="res://Resources/Character Features/Hats/Hat 1.png" id="2_1qxbn"]
 [ext_resource type="Script" path="res://Scripts/Character.gd" id="2_eewgy"]
 [ext_resource type="Texture2D" uid="uid://dycs6b52v785q" path="res://Resources/Character Features/Eyes/Eye 2.png" id="3_2lpp6"]
@@ -21,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cwldul6s63wic" path="res://Resources/Character Features/Pants/Pants 2.png" id="19_0ur3t"]
 [ext_resource type="Texture2D" uid="uid://c1bqx5nmy4i31" path="res://Resources/Character Features/Pants/Pants 3.png" id="20_1m2mh"]
 [ext_resource type="Texture2D" uid="uid://cfbevutvq0axq" path="res://Resources/Character Features/Pants/Pants 4.png" id="21_0v1ot"]
+[ext_resource type="Texture2D" uid="uid://bjdj684ragfa8" path="res://Resources/Character Features/Basis White.png" id="22_p7xqd"]
 [ext_resource type="Texture2D" uid="uid://bp4tsvr6njupx" path="res://Resources/Character Features/Pants/Pants 5.png" id="22_r2b5c"]
 
 [node name="Character" type="CanvasGroup"]
@@ -33,7 +33,7 @@ pants = Array[CompressedTexture2D]([ExtResource("5_rxlxp"), ExtResource("19_0ur3
 
 [node name="Character" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_bha67")
+texture = ExtResource("22_p7xqd")
 
 [node name="Eye" type="Sprite2D" parent="."]
 position = Vector2(0, -3)

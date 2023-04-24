@@ -10,9 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Hidden Amongst"
+config/name="Counter Espionage"
 run/main_scene="res://Main Menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
+boot_splash/image="res://Resources/Background.png"
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -30,6 +32,11 @@ window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://Resources/Crosshair Good.png"
 mouse_cursor/custom_image_hotspot=Vector2(32, 32)
 
+[gui]
+
+common/snap_controls_to_pixels=false
+fonts/dynamic_fonts/use_oversampling=false
+
 [input]
 
 Fire={
@@ -40,4 +47,6 @@ Fire={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

@@ -648,9 +648,8 @@ theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter Name"
 
 [node name="Polaroid" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.752941)
 texture_filter = 1
-position = Vector2(512, 384)
+position = Vector2(512, 960)
 scale = Vector2(6, 6)
 texture = ExtResource("1_qaay7")
 
@@ -669,12 +668,14 @@ stream = ExtResource("4_28kym")
 volume_db = 8.0
 
 [node name="Confirm" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_left = 448.0
 offset_top = 576.0
 offset_right = 576.0
 offset_bottom = 640.0
 theme_override_fonts/font = SubResource("FontVariation_bv8bj")
 theme_override_font_sizes/font_size = 24
+disabled = true
 text = "Confirm"
 
 [node name="Animator" type="AnimationPlayer" parent="."]

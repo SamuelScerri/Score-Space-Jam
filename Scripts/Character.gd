@@ -30,6 +30,19 @@ func change_clothes():
 	$Eye.texture = eyes[eye_id]
 	$Shirt.texture = shirts[shirt_id]
 	$Pants.texture = pants[pants_id]
+	
+	#Hard Coded Modulations
+	match shirt_id:
+		0:
+			$Character.modulate = Color8(255, 205, 128)
+		1:
+			$Character.modulate = Color8(255, 255, 255)
+		2:
+			$Character.modulate = Color8(170, 170, 170)
+		3:
+			$Character.modulate = Color8(119, 119, 119)
+		4:
+			$Character.modulate = Color8(119, 119, 119)
 
 func _ready():
 	if not unique_character:
