@@ -13,9 +13,10 @@ config_version=5
 config/name="Counter Espionage"
 run/main_scene="res://Main Menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 0)
 boot_splash/image="res://Resources/Background.png"
 boot_splash/use_filter=false
-config/icon="res://icon.svg"
+config/icon="res://Resources/Dungeon.png"
 
 [autoload]
 
@@ -26,6 +27,7 @@ Leaderboard="*res://Scripts/Leaderboard.gd"
 
 window/size/viewport_width=1024
 window/size/viewport_height=768
+window/size/mode=4
 window/size/resizable=false
 mouse_cursor/custom_image="res://Resources/Crosshair Good.png"
 mouse_cursor/custom_image_hotspot=Vector2(32, 32)
@@ -47,4 +49,6 @@ Fire={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_s3tc_bptc=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 0)
 textures/canvas_textures/default_texture_filter=0
