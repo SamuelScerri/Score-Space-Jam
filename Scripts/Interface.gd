@@ -52,6 +52,5 @@ func _on_animator_animation_finished(anim_name):
 func _on_button_3_pressed():
 	if $Button4.text.length() > 0:
 		Leaderboard._change_player_name($Button4.text)
-	
-	$Confirm2.play()
-	$Animator.play("Go To Leaderboards")
+		$Confirm2.play()
+		$Animator.play("Go To Leaderboards")

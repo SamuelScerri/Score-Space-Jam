@@ -22,10 +22,6 @@ var leaderboardInformation = null
 func _ready():
 	_authentication_request()
 
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		_upload_score(13)
-
 func _authentication_request():
 	# Check if a player session has been saved
 	var player_session_exists = false
@@ -69,7 +65,6 @@ func _on_authentication_request_completed(_result, _response_code, _headers, bod
 	session_token = json.session_token
 	
 	# Print server response
-	print(json)
 	
 	# Clear node
 	auth_http.queue_free()
@@ -86,7 +81,7 @@ func _on_authentication_request_completed(_result, _response_code, _headers, bod
 
 func _get_leaderboards():
 	print("Getting leaderboards")
-	var url = "https://api.lootlocker.io/game/leaderboards/"+leaderboard_key+"/list?count=10"
+	var url = "https://api.lootlocker.io/game/leaderboards/"+leaderboard_key+"/list?count=100"
 	var headers = ["Content-Type: application/json", "x-session-token:"+session_token]
 	
 	# Create a request node for getting the highscore
@@ -101,7 +96,7 @@ func _on_leaderboard_request_completed(_result, _response_code, _headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	
 	# Print data
-	#print(json)
+	print(json)
 	
 	# Formatting as a leaderboard
 	#var leaderboardFormatted = ""
